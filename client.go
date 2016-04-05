@@ -25,7 +25,7 @@ func main() {
 	runtime.GOMAXPROCS(4)
 
 	var totalPings int = 1000000
-	var concurrentConnections int = 10000
+	var concurrentConnections int = 100
 	var pingsPerConnection int = totalPings / concurrentConnections
 	var actualTotalPings int = pingsPerConnection * concurrentConnections
 
@@ -36,7 +36,9 @@ func main() {
 		go ping(pingsPerConnection, lockChan)
 	}
 	for i := 0; i < int(concurrentConnections); i++ {
+		fmt.Print("...\n")
 		<-lockChan
+		fmt.Print(".\n")
 	}
 	elapsed := 1000000 * time.Since(start).Seconds()
 	fmt.Println(elapsed / float64(actualTotalPings))
