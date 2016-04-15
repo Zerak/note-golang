@@ -25,7 +25,7 @@ func main() {
 	runtime.GOMAXPROCS(4)
 
 	var totalPings int = 1000000
-	var concurrentConnections int = 100
+	var concurrentConnections int = 1000
 	var pingsPerConnection int = totalPings / concurrentConnections
 	var actualTotalPings int = pingsPerConnection * concurrentConnections
 
