@@ -2,11 +2,11 @@ package main
 
 import (
 	"bufio"
-	"strings"
-	"fmt"
 	"bytes"
-	"log"
 	"encoding/binary"
+	"fmt"
+	"log"
+	"strings"
 	"time"
 )
 
@@ -16,12 +16,12 @@ func main() {
 
 	// check read
 	checkStringRead()
-	time.Sleep(time.Duration(1)*time.Second)
+	time.Sleep(time.Duration(1) * time.Second)
 
 	checkByteRead()
 }
 
-func checkStringRead()  {
+func checkStringRead() {
 	s := strings.NewReader("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
 	br := bufio.NewReader(s)
 	b := make([]byte, 20)
@@ -44,14 +44,14 @@ func checkStringRead()  {
 	// 0 EOF
 }
 
-func checkByteRead()  {
+func checkByteRead() {
 	//str := strings.NewReader("1234567890")
 	//str := strings.NewReader("abcdef")
-	buf := []byte{0x05,0x00,0x00,0x02,0xea,0x00,0x00,0x00,0x03,0x97,0x98,0x99,
-		0x05,0x00,0x00,0x03,0xea,0x00,0x00,0x00,0x04,0x97,0x98,0x99,0x10,
+	buf := []byte{0x05, 0x00, 0x00, 0x02, 0xea, 0x00, 0x00, 0x00, 0x03, 0x97, 0x98, 0x99,
+		0x05, 0x00, 0x00, 0x03, 0xea, 0x00, 0x00, 0x00, 0x04, 0x97, 0x98, 0x99, 0x10,
 	}
-	b := bytes.NewReader(buf)	// complete pack
-	re  := bufio.NewReader(b)
+	b := bytes.NewReader(buf) // complete pack
+	re := bufio.NewReader(b)
 
 	//buf1 := []byte{0x05,0x00,0x00,0x03,0xea,0x00,0x00,0x00,0x03,0x97,0x98,0x99,}
 	//buf2 := []byte{0x05,0x00,0x00,0x03,0xea,0x00,0x00,0x00,0x03,0x97,0x98,0x99,}
@@ -65,7 +65,7 @@ func checkByteRead()  {
 
 	// complete pack
 	head, err := re.Peek(9)
-	if err!=nil{
+	if err != nil {
 		log.Print("err ", string(head), " e->", err, " buffed->", re.Buffered())
 	}
 	log.Println("head ", head, " buffed->", re.Buffered())
@@ -79,7 +79,7 @@ func checkByteRead()  {
 	length := binary.BigEndian.Uint32(head[5:9])
 	log.Println("length ", length, " buffed->", re.Buffered())
 
-	data := make([]byte,9 + length)
+	data := make([]byte, 9+length)
 	// func A read
 	//len := 0
 	////for {
@@ -95,11 +95,11 @@ func checkByteRead()  {
 	//}
 
 	// func B peek + discard
-	data,err = re.Peek((int)(9 + length))
-	log.Println("data",data, " err", err, " buffed->", re.Buffered())
+	data, err = re.Peek((int)(9 + length))
+	log.Println("data", data, " err", err, " buffed->", re.Buffered())
 
 	re.Discard((int)(9 + length))
-	log.Println("data",data, " err", err, " buffed->", re.Buffered())
+	log.Println("data", data, " err", err, " buffed->", re.Buffered())
 
 	//}
 }

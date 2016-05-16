@@ -7,11 +7,10 @@ import (
 
 type String string
 
-func (s String)ServeHTTP(rw http.ResponseWriter, req *http.Request){
-	log.Printf("%v\n",req.URL.Path)
-	rw.Write(([]byte)("hello String" ))
+func (s String) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
+	log.Printf("%v\n", req.URL.Path)
+	rw.Write(([]byte)("hello String"))
 }
-
 
 type Struct struct {
 	Greeting string
@@ -19,8 +18,8 @@ type Struct struct {
 	Who      string
 }
 
-func (s Struct)ServeHTTP(rw http.ResponseWriter, req *http.Request){
-	log.Printf("%v\n",req.URL.Path)
+func (s Struct) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
+	log.Printf("%v\n", req.URL.Path)
 	rw.Write(([]byte)("hello Struct "))
 }
 

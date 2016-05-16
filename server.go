@@ -2,9 +2,9 @@
 package main
 
 import (
+	"fmt"
 	"net"
 	"runtime"
-	"fmt"
 )
 
 func handleClient(conn net.Conn) {

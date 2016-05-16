@@ -1,7 +1,7 @@
 package main
 
 import (
-"bytes"
+	"bytes"
 	"encoding/binary"
 	"log"
 )
@@ -11,7 +11,6 @@ const (
 	ConstHeaderLength   = 15
 	ConstSaveDataLength = 4
 )
-
 
 func main() {
 	//声明一个临时缓冲区，用来存储被截断的数据

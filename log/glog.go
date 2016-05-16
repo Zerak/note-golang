@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/golang/glog"
 	"flag"
+	"github.com/golang/glog"
 	"os"
 )
 

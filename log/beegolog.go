@@ -10,7 +10,7 @@ func main() {
 	//log.SetLogFuncCallDepth(0)
 
 	//log.SetLogger("console", "")
-	log.SetLogger("file",`{"filename":"blog.log","level":7,"maxlines":0,"maxsize":0,"daily":true,"maxdays":10}`)
+	log.SetLogger("file", `{"filename":"blog.log","level":7,"maxlines":0,"maxsize":0,"daily":true,"maxdays":10}`)
 
 	log.Emergency("emergency")
 	log.Emergency("emergency1")
@@ -56,6 +56,5 @@ func main() {
 	log.Info("info2")
 	log.Info("info3")
 	log.Info("info4")
-
 
 }
